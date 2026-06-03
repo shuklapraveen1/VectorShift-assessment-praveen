@@ -1,70 +1,189 @@
-# Getting Started with Create React App
+# ⚡ VectorShift AI Workflow Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern drag-and-drop workflow editor built for the VectorShift Frontend Technical Assessment.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### Core Requirements
 
-### `npm start`
+* Drag and drop workflow nodes
+* Custom React Flow nodes
+* Dynamic node creation
+* Input, Output, LLM, Text, API, Delay, Number, Math, and Condition nodes
+* Pipeline submission to FastAPI backend
+* DAG (Directed Acyclic Graph) validation
+* Node and edge counting
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Enhancements Added
 
-### `npm test`
+### 🎨 Modern UI/UX
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Premium dark-themed interface
+* Gradient action buttons
+* Glowing interactive node handles
+* Responsive layout
+* Smooth hover animations
+* Glassmorphism-inspired analysis popup
 
-### `npm run build`
+### ⚙️ Workflow Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Click-to-create nodes
+* Drag-to-create nodes
+* Node deletion via button
+* Delete key support
+* Resizable nodes
+* Auto Arrange Layout (Dagre)
+* MiniMap navigation
+* Animated edge connections
+* Connection validation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 📂 Import / Export
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Export workflow as JSON
+* Import workflow from JSON
+* Save and restore complete pipelines
 
-### `npm run eject`
+### 🔄 Reset System
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Custom animated reset experience:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Canvas folds into paper
+2. Paper compresses into a ball
+3. Ball flies toward trash can
+4. Trash can receives workflow
+5. Fresh canvas is restored
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 📊 Pipeline Analysis
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Displays:
 
-## Learn More
+* Total Nodes
+* Total Edges
+* DAG Validation Status
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+with animated analysis popup.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🏗️ Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Frontend
 
-### Analyzing the Bundle Size
+* React
+* React Flow
+* Zustand
+* Dagre
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Backend
 
-### Making a Progressive Web App
+* FastAPI
+* Python
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```text
+frontend/
+├── src/
+│   ├── nodes/
+│   ├── store.js
+│   ├── toolbar.js
+│   ├── ui.js
+│   ├── submit.js
+│   ├── ResetAnimation.jsx
+│   └── App.js
 
-### Deployment
+backend/
+├── main.py
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## ⚡ Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Runs on:
+
+```text
+http://localhost:3000
+```
+
+### Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+Runs on:
+
+```text
+http://localhost:8000
+```
+
+---
+
+## 🔗 API Endpoint
+
+### Parse Pipeline
+
+```http
+POST /pipelines/parse
+```
+
+Request:
+
+```json
+{
+  "nodes": [...],
+  "edges": [...]
+}
+```
+
+Response:
+
+```json
+{
+  "num_nodes": 4,
+  "num_edges": 4,
+  "is_dag": true
+}
+```
+
+---
+
+## 🎯 Assessment Highlights
+
+Beyond the assessment requirements, the project includes:
+
+* Auto Layout using Dagre
+* Import / Export Pipeline
+* Premium UI Styling
+* Animated Reset Workflow
+* Resizable Nodes
+* Enhanced DAG Analysis Popup
+* Interactive Minimap
+* Dynamic Workflow Building Experience
+
+---
+
+## 👨‍💻 Author
+
+**Praveen Shukla**
+
+GitHub:
+https://github.com/shuklapraveen1
+
+Repository:
+https://github.com/shuklapraveen1/VectorShift-assessment-praveen
