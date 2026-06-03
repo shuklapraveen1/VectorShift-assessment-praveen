@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "dagre": "^0.8.5",
-    "react-hot-toast": "^2.6.0"
-  }
-}
