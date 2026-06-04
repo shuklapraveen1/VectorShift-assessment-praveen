@@ -68,3 +68,83 @@ def parse_pipeline(pipeline: Pipeline):
         "num_edges": num_edges,
         "is_dag": is_dag,
     }
+
+@app.post("/pipelines/run")
+def run_pipeline(pipeline: Pipeline):
+
+    try:
+        input_nodes = [
+            node
+            for node in pipeline.nodes
+            if node["type"] == "customInput"
+        ]
+
+        math_nodes = [
+            node
+            for node in pipeline.nodes
+            if node["type"] == "math"
+        ]
+
+        if len(input_nodes) < 2:
+            return {
+                "success": False,
+                "message": "Need at least 2 input nodes"
+            }
+
+        if len(math_nodes) == 0:
+            return {
+                "success": False,
+                "message": "No Math Node found"
+            }
+
+        a = input_nodes[0]["data"].get("value", "")
+        b = input_nodes[1]["data"].get("value", "")
+
+        operation = (
+            math_nodes[0]["data"]
+            .get("operation", "+")
+        )
+
+        try:
+            a_num = float(a)
+            b_num = float(b)
+
+            if operation == "+":
+                result = a_num + b_num
+
+            elif operation == "-":
+                result = a_num - b_num
+
+            elif operation == "*":
+                result = a_num * b_num
+
+            elif operation == "/":
+                result = (
+                    a_num / b_num
+                    if b_num != 0
+                    else "Division by zero"
+                )
+
+            else:
+                result = "Unknown operation"
+
+        except ValueError:
+
+            if operation == "+":
+                result = str(a) + str(b)
+
+            else:
+                result = (
+                    "Text values only support +"
+                )
+
+        return {
+            "success": True,
+            "result": result
+        }
+
+    except Exception as e:
+        return {
+            "success": False,
+            "message": str(e)
+        }

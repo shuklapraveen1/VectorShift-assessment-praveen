@@ -12,6 +12,8 @@ export const OutputNode = ({ id, data }) => {
     data?.outputType || "Text"
   );
 
+  const result = data?.result || "";
+
   const handles = [
     {
       type: "target",
@@ -29,6 +31,7 @@ export const OutputNode = ({ id, data }) => {
       id={id}
       handles={handles}
     >
+      {/* NAME */}
       <label
         style={{
           fontSize: 12,
@@ -38,6 +41,7 @@ export const OutputNode = ({ id, data }) => {
         }}
       >
         Name
+
         <input
           value={currName}
           onChange={(e) =>
@@ -52,6 +56,7 @@ export const OutputNode = ({ id, data }) => {
         />
       </label>
 
+      {/* TYPE */}
       <label
         style={{
           fontSize: 12,
@@ -62,6 +67,7 @@ export const OutputNode = ({ id, data }) => {
         }}
       >
         Type
+
         <select
           value={outputType}
           onChange={(e) =>
@@ -77,6 +83,35 @@ export const OutputNode = ({ id, data }) => {
           <option>Text</option>
           <option>Image</option>
         </select>
+      </label>
+
+      {/* RESULT */}
+      <label
+        style={{
+          fontSize: 12,
+          display: "flex",
+          flexDirection: "column",
+          gap: 4,
+          marginTop: 12,
+        }}
+      >
+        Result
+
+        <div
+          style={{
+            background: "#020617",
+            color: "#22C55E",
+            border: "1px solid #334155",
+            borderRadius: 8,
+            padding: 10,
+            minHeight: 60,
+            fontFamily: "monospace",
+            whiteSpace: "pre-wrap",
+            overflowWrap: "break-word",
+          }}
+        >
+          {result || "> waiting..."}
+        </div>
       </label>
     </BaseNode>
   );
