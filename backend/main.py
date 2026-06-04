@@ -1,3 +1,4 @@
+# Backend API implemented with FastAPI to handle workflow parsing and execution logic.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -13,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+# Pipeline schema received from the frontend
 class Pipeline(BaseModel):
     nodes: list
     edges: list
@@ -24,13 +25,13 @@ class Pipeline(BaseModel):
 def root():
     return {"status": "running"}
 
-
+# Analyze workflow structure and verify DAG validity
 @app.post("/pipelines/parse")
 def parse_pipeline(pipeline: Pipeline):
 
     num_nodes = len(pipeline.nodes)
     num_edges = len(pipeline.edges)
-
+    # Build adjacency list representation of graph
     graph = defaultdict(list)
     indegree = defaultdict(int)
 
@@ -50,7 +51,7 @@ def parse_pipeline(pipeline: Pipeline):
             queue.append(node_id)
 
     visited = 0
-
+    # Kahn's Algorithm for cycle detection
     while queue:
         current = queue.popleft()
         visited += 1
@@ -60,7 +61,7 @@ def parse_pipeline(pipeline: Pipeline):
 
             if indegree[neighbor] == 0:
                 queue.append(neighbor)
-
+    # Graph is a DAG only if every node is visited in the topological sort
     is_dag = visited == num_nodes
 
     return {

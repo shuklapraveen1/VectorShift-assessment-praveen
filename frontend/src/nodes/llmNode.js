@@ -1,3 +1,5 @@
+// LLM Node component representing a language model execution in the workflow.
+// It has two input handles for system instructions and user prompt, and one output handle for the model response.
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";
 

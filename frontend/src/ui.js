@@ -1,7 +1,7 @@
 // ui.js
 // Displays the drag-and-drop UI
 // --------------------------------------------------
-
+// The PipelineUI component sets up the main canvas area for the workflow editor using React Flow. It manages the state of nodes and edges using the global store, and handles drag-and-drop events to allow users to add new nodes to the canvas by dragging from the toolbar or clicking on a node type. The component also defines the available node types and their corresponding React components for rendering on the canvas.
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';

@@ -1,5 +1,5 @@
 // store.js
-
+// Global state management using Zustand for the workflow editor application. It defines the structure of the state, including nodes, edges, and node ID tracking, as well as functions for manipulating the state such as adding nodes, connecting edges, updating node fields, auto-arranging nodes using Dagre, and handling workflow reset animations.
 import { create } from "zustand";
 
 import dagre from "dagre";
@@ -61,7 +61,8 @@ export const useStore = create((set, get) => ({
         }),
       });
     },
-
+    // Generic helper for updating node-specific runtime data
+    // such as execution results or backend responses
     updateNodeData: (nodeId, data) =>
       set({
         nodes: get().nodes.map((node) =>
@@ -76,7 +77,7 @@ export const useStore = create((set, get) => ({
             : node
         ),
       }),
-    // RESET ANIMATION STATE
+    // Controls the animated workflow reset experience
     isResetting: false,
 
     startResetAnimation: () =>
@@ -90,6 +91,8 @@ export const useStore = create((set, get) => ({
         nodes: [],
         edges: [],
       }),
+      // Uses Dagre graph layout to position connected nodes
+      // in a clean top-to-bottom workflow structure
       autoArrange: () => {
       const nodes = [...get().nodes];
       const edges = get().edges;

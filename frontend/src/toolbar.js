@@ -1,3 +1,4 @@
+// toolbar.js - Defines the PipelineToolbar component which renders the top toolbar of the workflow editor UI. The toolbar includes the application title and a set of draggable node types that users can drag and drop onto the canvas to create new nodes in their workflow. Each draggable node is represented by the DraggableNode component, which handles the drag start event to set the node type in the data transfer object for later use when dropping onto the canvas.
 import { DraggableNode } from './draggableNode';
 
 export const PipelineToolbar = () => {

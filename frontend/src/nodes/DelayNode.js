@@ -1,3 +1,5 @@
+// Delay Node component representing a wait/delay in the workflow.
+// It has one input handle for the trigger and one output handle for the delayed execution.
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";
 

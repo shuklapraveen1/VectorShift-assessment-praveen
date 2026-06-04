@@ -1,3 +1,6 @@
+// Text Node component representing a text template in the workflow.
+// It has one output handle that can be connected to other nodes.
+// The text can contain variables in the format {{variableName}} which are extracted and displayed.
 import { useState } from "react";
 import { Handle, Position } from "reactflow";
 import { BaseNode } from "./BaseNode";

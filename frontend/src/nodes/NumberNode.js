@@ -1,3 +1,5 @@
+// Number Node component representing a numeric input in the workflow.
+// It has one output handle that can be connected to other nodes.
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";
 

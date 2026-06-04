@@ -1,3 +1,5 @@
+// submit.js - Handles pipeline submission, execution, import/export, and reset functionality
+// It defines the SubmitButton component which provides buttons for submitting the pipeline to the backend for validation, running the pipeline to get execution results, exporting the pipeline as a JSON file, importing a pipeline from a JSON file, and resetting the workflow with an animation. The component uses the useStore hook to access and manipulate the global state of nodes and edges in the workflow.
 import { useState } from "react";
 import { useStore } from "./store";
 
@@ -10,11 +12,12 @@ export const SubmitButton = () => {
   const autoArrange = useStore((state) => state.autoArrange);
   const setPipeline = useStore((state) => state.setPipeline);
 
-  // Only keeping runResult for the "Run" execution popup
+  // Only keep runResult for the "Run" execution popup
   const [runResult, setRunResult] = useState(null);
 
   const updateNodeData = useStore((state) => state.updateNodeData);
-
+  // Sends the current workflow graph to the FastAPI backend
+  // for DAG validation and pipeline analysis
   const handleSubmit = async () => {
     try {
       const response = await fetch("http://localhost:8000/pipelines/parse", {
@@ -31,7 +34,8 @@ export const SubmitButton = () => {
       const data = await response.json();
 
       const outputNode = nodes.find((node) => node.type === "customOutput");
-
+      // Display backend analysis directly inside the first Output Node
+      // instead of using a browser alert or popup
       if (outputNode) {
         updateNodeData(outputNode.id, {
           result: `Nodes: ${data.num_nodes}\nEdges: ${data.num_edges}\nDAG: ${
@@ -51,7 +55,8 @@ export const SubmitButton = () => {
       }
     }
   };
-
+  // Executes the workflow and displays the computed result
+  // returned by the backend execution endpoint
   const handleRun = async () => {
     try {
       const response = await fetch("http://localhost:8000/pipelines/run", {
@@ -81,7 +86,7 @@ export const SubmitButton = () => {
       });
     }
   };
-
+  // Serialize the current workflow into a downloadable JSON file
   const handleExport = () => {
     const pipeline = {
       nodes,
@@ -101,7 +106,7 @@ export const SubmitButton = () => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
-
+  // Restore nodes and edges from a previously exported pipeline file
   const handleImport = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -125,7 +130,7 @@ export const SubmitButton = () => {
 
   return (
     <>
-      {/* RUN EXECUTION POPUP */}
+      {/* Temporary execution result overlay shown after pressing Run */}
       {runResult && (
         <div
           style={{
@@ -259,7 +264,9 @@ export const SubmitButton = () => {
         >
           ▶ Run
         </button>
-        {/* RESET */}
+        
+        {/*  Trigger custom paper-fold RESET animation before clearing state */}
+        
         <button
           onClick={() => {
             startResetAnimation();

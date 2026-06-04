@@ -1,3 +1,5 @@
+// Math Node component representing a mathematical operation in the workflow.
+// It has two input handles for operands and one output handle for the result.
 import { useState } from "react";
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";

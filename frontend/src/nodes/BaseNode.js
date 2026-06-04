@@ -1,3 +1,10 @@
+/**
+ * Shared node abstraction used by all workflow nodes.
+ * Provides consistent styling, handles, deletion,
+ * resizing, animations, and future extensibility.
+ * Each specific node type (e.g. InputNode, ApiNode) composes
+ * BaseNode and passes in its unique configuration.
+ */
 import React from "react";
 import { Handle } from "reactflow";
 import { useStore } from "../store";

@@ -1,3 +1,5 @@
+// Notification component that displays a message for a short duration and then automatically disappears. It uses the useEffect hook to set a timer for closing the notification after 2.5 seconds, and applies styles to position and style the notification on the screen.
+
 import { useEffect } from "react";
 
 export const Notification = ({

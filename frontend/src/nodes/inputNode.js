@@ -1,3 +1,5 @@
+// Input Node component representing a user-provided input in the workflow.
+// It has one output handle that can be connected to other nodes.
 import { useState } from "react";
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";

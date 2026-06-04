@@ -1,3 +1,5 @@
+// DraggableNode component representing a node type that can be dragged and dropped onto the canvas to create new nodes in the workflow.
+// It handles the drag start event to set the node type in the data transfer object, and also allows adding a node by clicking on it.
 export const DraggableNode = ({ type, label }) => {
   const onDragStart = (event, nodeType) => {
     const appData = { nodeType };

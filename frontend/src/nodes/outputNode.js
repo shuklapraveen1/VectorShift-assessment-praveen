@@ -1,3 +1,5 @@
+// Output Node component representing the final output of the workflow.
+// It has one input handle for the value to be output, and displays the result with a name and type.
 import { useState } from "react";
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";

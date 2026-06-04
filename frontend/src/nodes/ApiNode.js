@@ -1,3 +1,5 @@
+// API Node component representing an external API call in the workflow.
+// It has one input handle for the API request and one output handle for the response.
 import { Position } from "reactflow";
 import { BaseNode } from "./BaseNode";
 

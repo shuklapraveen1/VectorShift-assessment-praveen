@@ -1,5 +1,7 @@
+// Condition Node component representing a decision point in the workflow.
+// It has one input handle for the condition and two output handles for true/false branches.
 import { Position } from "reactflow";
-import { BaseNode } from "./BaseNode";
+import { BaseNode } from "./BaseNode";  
 
 export const ConditionNode = ({ id }) => {
   const handles = [
